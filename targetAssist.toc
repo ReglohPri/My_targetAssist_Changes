@@ -1,0 +1,11 @@
+## Interface: 90001
+## Author: Sonora, Dridzt
+## Title: |cffD7BEA5target|r Assist
+## Notes: Unit frames addon designed to track assist targets in groups (inspired by MainAssist).
+## OptionalDeps: Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets, SharedMedia, SharedMediaAdditionalFonts, LibRangeCheck-2.0, LibGroupInSpecT, LibKeyBound-1.0, Clique, oRA3
+## SavedVariables: targetAssistDb
+## Version: 1.4.20
+
+embeds.xml
+
+load.xml
