@@ -241,7 +241,7 @@ end
 function addon:createHeaderFrame()
 
     if not self.headerFrame then
-        self.headerFrame = CreateFrame('Frame', headerMenuName, UIParent, "BackdropTemplate")
+        self.headerFrame = CreateFrame('Frame', headerMenuName, UIParent, BackdropTemplateMixin and "BackdropTemplate")
         self.headerFrame.texture = self.headerFrame:CreateTexture()
         self.headerFrame.text = self.headerFrame:CreateFontString(nil, 'OVERLAY')
 
@@ -295,8 +295,8 @@ function addon:createHeaderFrame()
 
     self.headerFrame:SetHeight(self.config.headerHeight)
     self.headerFrame:SetPoint(unpack(self.config.headerAnchor))
-    self.headerFrame.backdropInfo = self.config.headerBackdrop
-	self.headerFrame:ApplyBackdrop()
+    self.headerFrame:SetBackdrop(self.config.headerBackdrop)
+	--self.headerFrame:ApplyBackdrop()
     self.headerFrame:SetBackdropColor(0.15, 0.15, 0.15)
 
     self.headerFrame.texture:SetAllPoints(self.headerFrame)
@@ -372,11 +372,12 @@ function addon:setupButtonFunctionality(buttonFrame, unitID, targetName, menuCal
             if keys ~= "" then keys = keys .. ', ' end
             keys = keys.. GetBindingText(hotKey,'KEY_')
         end
-
         return keys
     end
 
     function buttonFrame:SetKey(key)
+		print("H.Sch. - SetKey")
+		print(key)
         SetBinding(key, command)
     end
 
@@ -445,7 +446,7 @@ function addon:createTargetButtons()
                 assistFrame.targetCountString:ClearAllPoints()
             else
                 --assistFrame = CreateFrame("Button", assistFrameName, UIParent, "SecureUnitButtonTemplate")
-                assistFrame = CreateFrame("Button", assistFrameName, UIParent, "BackdropTemplate")
+                assistFrame = CreateFrame("Button", assistFrameName, UIParent, BackdropTemplateMixin and "BackdropTemplate, SecureUnitButtonTemplate")
                 assistFrame.texture = assistFrame:CreateTexture()
                 assistFrame.fontString = assistFrame:CreateFontString(nil, 'OVERLAY')
                 assistFrame.mostTargetedIcon = assistFrame:CreateTexture(nil, 'OVERLAY')
@@ -457,8 +458,8 @@ function addon:createTargetButtons()
             assistFrame:SetWidth(self.buttonWidth)
             assistFrame:SetHeight(self.config.targetHeight)
 
-            assistFrame.backdropInfo = self.config.targetBackdrop
-			assistFrame:ApplyBackdrop()
+            assistFrame:SetBackdrop(self.config.targetBackdrop)
+			--assistFrame:ApplyBackdrop()
             assistFrame:SetBackdropColor(unpack(self.config.targetBackdropColor))
 
             assistFrame.texture:SetPoint('TOP', assistFrame, 'TOP')
@@ -499,7 +500,7 @@ function addon:createTargetButtons()
 
             else
                 --targetFrame = CreateFrame("Button", targetFrameName, UIParent, "SecureUnitButtonTemplate")
-                targetFrame = CreateFrame("Button", targetFrameName, UIParent, "BackdropTemplate")
+                targetFrame = CreateFrame("Button", targetFrameName, UIParent, BackdropTemplateMixin and "BackdropTemplate, SecureUnitButtonTemplate")
                 targetFrame.texture = targetFrame:CreateTexture()
                 targetFrame.fontString = targetFrame:CreateFontString(nil, 'OVERLAY')
                 targetFrame.mostTargetedIcon = targetFrame:CreateTexture(nil, 'OVERLAY')
@@ -512,8 +513,8 @@ function addon:createTargetButtons()
             targetFrame:SetWidth(self.buttonWidth)
             targetFrame:SetHeight(self.config.targetHeight)
 
-            targetFrame.backdropInfo = self.config.targetBackdrop
-			targetFrame:ApplyBackdrop()
+            targetFrame:SetBackdrop(self.config.targetBackdrop)
+			--targetFrame:ApplyBackdrop()
             targetFrame:SetBackdropColor(unpack(self.config.targetBackdropColor))
 
             targetFrame.texture:SetPoint('TOP', targetFrame, 'TOP')
@@ -556,7 +557,7 @@ function addon:createTargetButtons()
                     targetTargetFrame.fontString:ClearAllPoints()
                 else
                     --targetTargetFrame = CreateFrame("Button", targetTargetFrameName, UIParent, "SecureUnitButtonTemplate")
-                    targetTargetFrame = CreateFrame("Button", targetTargetFrameName, UIParent, "BackdropTemplate")
+                    targetTargetFrame = CreateFrame("Button", targetTargetFrameName, UIParent, BackdropTemplateMixin and "BackdropTemplate, SecureUnitButtonTemplate")
                     targetTargetFrame.texture = targetTargetFrame:CreateTexture()
                     targetTargetFrame.fontString = targetTargetFrame:CreateFontString(nil, 'OVERLAY')
                 end
@@ -572,8 +573,8 @@ function addon:createTargetButtons()
                     insets = {top = -1, left = -1 * (self.config.targetHeight/2 + 2), bottom = -1, right = -1}
                 }
 
-                targetTargetFrame.backdropInfo = targetTargetBackdrop
-				targetTargetFrame:ApplyBackdrop()
+                targetTargetFrame:SetBackdrop(targetTargetBackdrop)
+				--targetTargetFrame:ApplyBackdrop()
                 targetTargetFrame:SetBackdropColor(unpack(self.config.targetBackdropColor))
 
                 targetTargetFrame.texture:SetPoint('TOP', targetTargetFrame, 'TOP')
